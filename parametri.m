@@ -21,3 +21,6 @@ Bm=[80,80,0,0]*1e-6;        %koeficijent viskoznog otpora motora
 %% Parametri regulatora
 Ts=8e-3;        %vrijeme uzorkovanja računala
 Ju=Jm+Jn;       %ukupni moment tromosti
+Krq = 1;
+Kr = 5;
+Ti = 0.06;
