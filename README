@@ -1,0 +1,59 @@
+Ova datoteka sadrži programsku podršku korištenu pri izradi diplomskog rada "Upravljanje SCARA robotom Kiwi uz regulaciju momenta i estimaciju momenta tereta". U nastavku će biti kratko objašnjeni sadržaji i funkcije pojedinih programa te postupak za upravljanje kiwi robotom. Detaljan opis sustava je dan u diplomskom radu. 
+----------------------------------------------------------------------
+Postupak za pokretanje programa:
+1) prije pokretanja programa potrebno je pokrenuti funkciju parametri.m unutar direktorija u kojem se nalazi kako bi se postavile sve potrebne varijable.
+
+2)prije prvog pokretanja i nakon svake izmjene sadžaja CAN.c funkcije potrebno je pokrenuti narebu:
+" mex CAN.c bci.c ipci.c pc_i.c bapfw165.c filterlist.c bapfw320.c ipci_lin.c bapfw161.c dpram.c kiwi.c -largeArrayDims CFLAGS="\$CFLAGS -std=c99" "
+kako bi se funkcija za komunikaciju zakodirala u C kod.
+
+3)Ukoliko se želi upravljati po trajektoriji željenu trajektoriju potrebno je definirati prije pokretanja unutar skripte "pripremi_trajektoriju.m". Ona prima trajektoriju u obliku slijeda točaka, provodi taylorovu i ho-cookovu interpolaciju te dobivene polinome uzorkuje zadanim vremenom uzorkovanja. Dobivene točke trajektorije se zatim sprema u varijable "q_in1" do "q_in4" koje se čitaju u shemu pomoću from workspace blokova.
+
+4)Otvoriti shemu "Shema.slx" koja upravlja robotom. Unutar sheme je moguće odabirati način rada i trenutne referentne vrijednosti regulatora. 
+
+5) Osigurati da je računalo preko etherneta spojeno na target te pokrenuti "Build" čime se shema prebacuje na target. Nakon toga je moguće pokrenuti "Connect" i zatim "Run" tipke čie se započinje simulacija.
+
+6) Nakon završetka rada sheme logirane podatke se s target računala se dohvača i sprema pozivanjem skripte pokreni.m koja poziva funkcije za dohvačanje podataka, učitavanje u radni prostor, i spremanje na disk.
+
+7)Podatke dohvačeneu trenutnoj iteraciji je moguće ispisati naredbom plotaj(pokretanje) gdje je pokretanje redni broj pod kojim su spremljeni trenutni podaci.
+
+----------------------------------------------------------------------
+Opis datoteka:
+-./PI_param_shema.slx sadrži shemu korištenu za tuniranje PI regulatora
+-./prvi_mot_test.slx sadrži shemu s simulacijskim modelom sustava korištenu tokom izrade rada čija točnost nije sigurna
+-./dohvati.m dohvača podatke s target računala
+-./ucitaj.m vraća strukturu koja sadrži mjerenja iz sumulacije
+-./spremi.m sprema simulacijske podatke iz radnog prostora u datoteku
+-./odpakiraj_podatke.m odpakira strukturu podatci u radni prostor
+-./KIWI sadrži funkcije za planiranje trajektorije, potrebna dorada
+-./simulink sadrži datoteke povezane uz simulink shemu
+-./simulink/Data sadrži pohranjene podatke
+-./simulink/CAN.c, kiwi.c i kiwi.h sadrže kod zadužen za komunikaciju računala i pretvarča
+-./simulink/Shema.slx predstavlja glavnu simulink shemu
+-./simulink/pripremi_trajektoriju.m sadrži skriptu za definiranje trajektorije
+-./simulink/pokreni.m sadrši skriptu za dohvačanje, spremanje i ispisivanje podataka s target računala
+-./simulink/pokretanje.mat sadrži id prethodnog pokretanja 
+-./simulink/plotaj.m sadrži funkciju za ispis podataka iz simulinka
+
+-za brisat:
+pom.m
+plotaj_spektar.m
+
+silike/
+
+Kiwi/
+test
+plotaj
+Kiwi_robot
+
+simulink/
+
+Shema šrint
+shema radi
+
+S_l_can_template
+
+
+modificiranio CAN.c,kiwi.c,kiwi.h
+
+
