@@ -5,7 +5,7 @@
 
 function data= dohvati()
 
-data_path = '../data';
+data_path = './data';
 unix(sprintf('scp root@target:q.mat %s/q.mat', data_path))
 unix(sprintf('scp root@target:dq.mat %s/dq.mat', data_path));
 unix(sprintf('scp root@target:u.mat %s/u.mat',data_path))
