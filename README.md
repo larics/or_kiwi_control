@@ -30,13 +30,25 @@ which should be invoked every time before starting Matlab.
 
 ### ERT Linux
 
-Clone the [ERT Linux repo](https://github.com/larics/ert_linux.git) to a location of your choice (e.g. `~/Documents/MATLAB`) and make sure to check out the [Kiwi branch](https://github.com/larics/ert_linux/tree/kiwi). Then open Matlab, navigate to the `ert_linux` folder and run the installation script
+Clone the [ERT Linux repo](https://github.com/larics/ert_linux.git) to a location of your choice (e.g. `~/Documents/MATLAB`) and make sure to check out the [Kiwi branch](https://github.com/larics/ert_linux/tree/kiwi).
+```
+git clone https://github.com/larics/ert_linux.git
+cd ert_linux
+git fetch
+git checkout -b test origin/test
+```
+Then open Matlab, navigate to the `ert_linux` folder and run the installation script
 ```
 >> ert_linux_setup
 ```
 which adds the `ert_linux` folder to Matlab's search path.
 
 ## Running the controller
+
+Clone this repo to a location of your choice:
+```
+git clone https://github.com/larics/or_kiwi_contol.git
+```
 
 Make sure that the system is connected properly. An Ethernet connection should be established between the client PC and the target machine. Start Matlab, `cd` to this folder and run the following steps once:
 
