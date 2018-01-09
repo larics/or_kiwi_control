@@ -6,3 +6,6 @@ Kiwi_control_ert_linux/
 slprj/
 *.mat
 
+# Ignore Emacs droppings
+\#*
+.\#*
