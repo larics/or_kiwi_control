@@ -12,7 +12,7 @@ The software has been tested with Matlab R2014a and R2015a on Ubuntu 14.04 and U
 
 ### gcc 4.7
 
-Matlab R2014a requires gcc-4.7, so this version must be installed and set as default system-wide before starting Matlab, in order for Matlab to find it. The `update-alternatives` tool offers a nice way of choosing between gcc versions. In this example (applicable to Ubuntu 16.04) we'll enable choosing between gcc 5 and gcc 4.7.
+Matlab R2014a requires gcc-4.7, so this version must be installed and set as default system-wide before starting Matlab, in order for Matlab to find it. Another *important* reason why gcc 4.7 is required might have to do with the runtime libraries installed on the target PC. Using a newer gcc version (supported by newer versions of Matlab) might lead to crashes of the executables generated from Simulink models. The `update-alternatives` tool offers a nice way of choosing between gcc versions. In this example (applicable to Ubuntu 16.04) we'll enable choosing between gcc 5 and gcc 4.7.
 
 ```
 sudo apt install gcc-4.7 g++-4.7
@@ -47,7 +47,7 @@ which adds the `ert_linux` folder to Matlab's search path.
 
 Clone this repo to a location of your choice:
 ```
-git clone https://github.com/larics/or_kiwi_contol.git
+git clone --recurse-submodules https://github.com/larics/or_kiwi_contol.git
 ```
 
 Make sure that the system is connected properly. An Ethernet connection should be established between the client PC and the target machine. Start Matlab, `cd` to this folder and run the following steps once:
